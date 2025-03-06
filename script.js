@@ -1,11 +1,3 @@
-const images = [
-  { url: "https://picsum.photos/id/237/200/300" },
-  { url: "https://picsum.photos/id/238/200/300" },
-  { url: "https://picsum.photos/id/239/200/300" },
-  { url: "https://picsum.photos/id/239/200/300" },
-  { url: "https://picsum.photos/id/238/200/300" },
-  { url: "https://picsum.photos/id/237/200/300" },
-];
 
 const outputDiv = document.getElementById("output");
 const btn = document.getElementById("download-images-button");
@@ -15,7 +7,7 @@ const loadingDiv = document.createElement("div");
 errDiv.setAttribute("id", "error");
 loadingDiv.setAttribute("id", "loading");
 loadingDiv.innerText = "Loading...";
-// loadingDiv.style.display = "none"; // Hide initially
+
 
 document.body.appendChild(loadingDiv);
 document.body.appendChild(errDiv);
@@ -32,7 +24,7 @@ function downloadImage(url) {
 function downloadImages() {
   outputDiv.innerHTML = "";
   errDiv.innerHTML = "";
-  loadingDiv.style.display = "block"; // Show loading spinner
+  loadingDiv.style.display = "block";
 
   Promise.all(images.map(img => downloadImage(img.url)))
     .then(downloadedImages => {
@@ -42,9 +34,17 @@ function downloadImages() {
       errDiv.innerText = error.message;
     })
     .finally(() => {
-      loadingDiv.style.display = "none"; // Hide loading spinner
+      loadingDiv.style.display = "none"; 
     });
 }
 
-// Attach event listener to button
 btn.addEventListener("click", downloadImages);
+
+const images = [
+  { url: "https://picsum.photos/id/237/200/300" },
+  { url: "https://picsum.photos/id/238/200/300" },
+  { url: "https://picsum.photos/id/239/200/300" },
+  { url: "https://picsum.photos/id/239/200/300" },
+  { url: "https://picsum.photos/id/238/200/300" },
+  { url: "https://picsum.photos/id/237/200/300" },
+];
